@@ -1,0 +1,127 @@
+/***************************************************************************//**
+* \file cy8c6x7_cm4_dual.icf
+* \version 1.0
+*
+* Linker file for the IAR compiler.
+*
+* \note The entry point is fixed and starts at 0x10000000. The valid application
+* image should be placed there.
+*
+* \note The linker files included with the PDL template projects must be generic
+* and handle all common use cases. Your project may not use every section
+* defined in the linker files. In that case you may see warnings during the
+* build process. In your project, you can simply comment out or remove the
+* relevant code in the linker file.
+*
+********************************************************************************
+* \copyright
+* Copyright 2016-2017, Cypress Semiconductor Corporation.  All rights reserved.
+* You may use this file only in accordance with the license, terms, conditions,
+* disclaimers, and limitations in the end user license agreement accompanying
+* the software package with which this file was provided.
+*******************************************************************************/
+
+/*###ICF### Section handled by ICF editor, don't touch! ****/
+/*-Editor annotation file-*/
+/* IcfEditorFile="$TOOLKIT_DIR$\config\ide\IcfEditor\cortex_v1_4.xml" */
+/*-Specials-*/
+define symbol __ICFEDIT_intvec_start__ = 0x00000000;
+/*-Memory Regions-*/
+
+/* Flash */
+define symbol __ICFEDIT_region_IROM1_start__ = 0x10080000;
+define symbol __ICFEDIT_region_IROM1_end__   = 0x10100000;
+
+/* Working Flash */
+define symbol __ICFEDIT_region_IROM2_start__ = 0x14000000;
+define symbol __ICFEDIT_region_IROM2_end__   = 0x14007FFF;
+/* XIP */
+define symbol __ICFEDIT_region_EROM1_start__ = 0x18000000;
+define symbol __ICFEDIT_region_EROM1_end__   = 0x1FFFFFFF;
+define symbol __ICFEDIT_region_EROM2_start__ = 0x0;
+define symbol __ICFEDIT_region_EROM2_end__   = 0x0;
+define symbol __ICFEDIT_region_EROM3_start__ = 0x0;
+define symbol __ICFEDIT_region_EROM3_end__   = 0x0;
+/* RAM */
+define symbol __ICFEDIT_region_IRAM1_start__ = 0x08024000;
+define symbol __ICFEDIT_region_IRAM1_end__   = 0x08048000;
+
+define symbol __ICFEDIT_region_IRAM2_start__ = 0x0;
+define symbol __ICFEDIT_region_IRAM2_end__   = 0x0;
+define symbol __ICFEDIT_region_ERAM1_start__ = 0x0;
+define symbol __ICFEDIT_region_ERAM1_end__   = 0x0;
+define symbol __ICFEDIT_region_ERAM2_start__ = 0x0;
+define symbol __ICFEDIT_region_ERAM2_end__   = 0x0;
+define symbol __ICFEDIT_region_ERAM3_start__ = 0x0;
+define symbol __ICFEDIT_region_ERAM3_end__   = 0x0;
+/*-Sizes-*/
+if (!isdefinedsymbol(__STACK_SIZE)) {
+  define symbol __ICFEDIT_size_cstack__ = 0x1000;
+} else {
+  define symbol __ICFEDIT_size_cstack__ = __STACK_SIZE;
+}
+define symbol __ICFEDIT_size_proc_stack__ = 0x0;
+if (!isdefinedsymbol(__HEAP_SIZE)) {
+    define symbol __ICFEDIT_size_heap__ = 0x0400;
+} else {
+  define symbol __ICFEDIT_size_heap__ = __HEAP_SIZE;
+}
+/**** End of ICF editor section. ###ICF###*/
+
+
+define memory mem with size = 4G;
+define region IROM1_region = mem:[from __ICFEDIT_region_IROM1_start__ to __ICFEDIT_region_IROM1_end__];
+define region IROM2_region = mem:[from __ICFEDIT_region_IROM2_start__ to __ICFEDIT_region_IROM2_end__];
+define region EROM1_region = mem:[from __ICFEDIT_region_EROM1_start__ to __ICFEDIT_region_EROM1_end__];
+define region IRAM1_region = mem:[from __ICFEDIT_region_IRAM1_start__ to __ICFEDIT_region_IRAM1_end__];
+
+define block CSTACK     with alignment = 8, size = __ICFEDIT_size_cstack__     { };
+define block PROC_STACK with alignment = 8, size = __ICFEDIT_size_proc_stack__ { };
+define block HEAP       with alignment = 8, size = __ICFEDIT_size_heap__       { };
+define block HSTACK {block HEAP, block PROC_STACK, last block CSTACK};
+define block CM4_RO     { first section .intvec, readonly };
+
+/*-Initializations-*/
+initialize by copy { readwrite };
+do not initialize  { section .noinit, section .intvec_ram };
+
+
+/*-Placement-*/
+place at start of IROM1_region  { block CM4_RO };
+
+place at start of IRAM1_region  { readwrite section .intvec_ram};
+place in          IRAM1_region  { readwrite };
+place at end   of IRAM1_region  { block HSTACK };
+
+/* The section is used for BLE bonding data storage. */
+place at start of IROM2_region  { section .ble_bond_data };
+
+/* Places the code in the Execute in Place (XIP) section. See the smif driver documentation for details. */
+place at start of EROM1_region  { section .xip };
+
+keep {  section .cy_m0plus_image,
+        section .cymeta,
+        section .xip };
+
+/* These sections are used for additional metadata (silicon revision, Silicon/JTAG ID, etc.) storage. */
+".cymeta" : place at address mem : 0x90500000 { readonly section .cymeta };
+
+
+/* The following symbols used by the cypdlelftool. */
+/* Flash */
+define exported symbol __cy_memory_0_start    = 0x10000000;
+define exported symbol __cy_memory_0_length   = 0x00100000;
+define exported symbol __cy_memory_0_row_size = 0x200;
+
+/* Working Flash */
+define exported symbol __cy_memory_1_start    = 0x14000000;
+define exported symbol __cy_memory_1_length   = 0x8000;
+define exported symbol __cy_memory_1_row_size = 0x200;
+
+/* XIP */
+define exported symbol __cy_memory_2_start    = 0x18000000;
+define exported symbol __cy_memory_2_length   = 0x08000000;
+define exported symbol __cy_memory_2_row_size = 0x200;
+
+
+/* EOF */

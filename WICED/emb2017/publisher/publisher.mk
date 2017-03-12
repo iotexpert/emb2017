@@ -30,9 +30,9 @@
  # so agrees to indemnify Cypress against all liability.
 #
 
-NAME := App_emb2017_subcriber
+NAME := App_emb2017_publisher
 
-$(NAME)_SOURCES := subscriber.c
+$(NAME)_SOURCES := publisher.c
 
 $(NAME)_COMPONENTS := protocols/MQTT
 
@@ -42,8 +42,8 @@ $(NAME)_RESOURCES  := apps/aws_iot/rootca.cer \
                       apps/aws_iot/client.cer \
                       apps/aws_iot/privkey.cer
 
-VALID_PLATFORMS := BCM943907AEVAL1F_WW101 \
-					BCM943362WCD4 \
+VALID_PLATFORMS := BCM943362WCD4 \
+				   BCM943907AEVAL1F_WW101 \
                    BCM943362WCD6 \
                    BCM943362WCD8 \
                    BCM943364WCD1 \
