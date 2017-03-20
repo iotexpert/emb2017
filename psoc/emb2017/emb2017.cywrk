@@ -3,7 +3,7 @@
 <!--This file is machine generated and read. It is not intended to be edited by hand.-->
 <!--Due to this, there is no schema for this file.-->
 <CyGuid_2867d519-54d2-4c01-9830-c51cb08bc3dd type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWorkspaceSerialize" version="5" xml_contents_version="3" name="emb2017" persistent="emb2017.cywrk" platform="NOT_USED">
-<current_project name=".\PSoC-MotorDriver.cydsn\PSoC-MotorDriver.cyprj" />
+<current_project name=".\p4000stest.cydsn\p4000stest.cyprj" />
 <wrkspc_folders />
 <files />
 <projects>
@@ -14,6 +14,7 @@
 <v>.\Blank4M.cydsn\Blank4M.cyprj</v>
 <v>.\PSoC-MotorDriver.cydsn\PSoC-MotorDriver.cyprj</v>
 <v>.\4MI2C.cydsn\4MI2C.cyprj</v>
+<v>.\p4000stest.cydsn\p4000stest.cyprj</v>
 </projects>
 <workspace_id v="22d04130-4bb3-4d7d-921b-2a72554feac2" />
 <WriteAppVersionLastSavedWith v="4.1.0.2596" />

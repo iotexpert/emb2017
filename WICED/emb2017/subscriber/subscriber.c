@@ -80,7 +80,6 @@ static wiced_mqtt_security_t                 security;
 
 static wiced_semaphore_t                     i2cSemaphore;     // EMB2017
 static int									 position;         // EMB2017
-static wiced_thread_t   			         i2cThreadHandle;  // EMB2017
 /*
  *
  *
@@ -113,25 +112,10 @@ static wiced_result_t mqtt_connection_event_cb( wiced_mqtt_object_t mqtt_object,
             wiced_mqtt_topic_msg_t msg = event->data.pub_recvd;
             memcpy( data, msg.data, msg.data_len );
             data[ msg.data_len + 1 ] = '\0';
-            sscanf(data,"%x",&position); // EMB2017
-
-
-
-
+            // EMB2017
+            sscanf(data,"%x",&position);
             wiced_rtos_set_semaphore(&i2cSemaphore);
-            /*
 
-            if ( !strncmp( data, "LIGHT ON", msg.data_len ) )
-            {
-                wiced_gpio_output_high( WICED_LED1 );
-                WPRINT_APP_INFO(( "light on\n" ));
-            }
-            else
-            {
-                wiced_gpio_output_low( WICED_LED1 );
-                WPRINT_APP_INFO(( "light off\n" ));
-            }
-            */
         }
             break;
         default:

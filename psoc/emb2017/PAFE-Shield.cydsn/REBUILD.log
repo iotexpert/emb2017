@@ -1,13 +1,11 @@
-Loading plugins phase: Elapsed time ==> 0s.625ms
-<CYPRESSTAG name="CyDsfit arguments...">
-cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p \\vmware-host\Shared Folders\Documents\emb2017\psoc\emb2017\PAFE-Shield.cydsn\PAFE-Shield.cyprj -d CY8C4A45AZI-483 -s \\vmware-host\Shared Folders\Documents\emb2017\psoc\emb2017\PAFE-Shield.cydsn\Generated_Source\PSoC4 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
-</CYPRESSTAG>
-<CYPRESSTAG name="Design elaboration results...">
-</CYPRESSTAG>
-Elaboration phase: Elapsed time ==> 1s.875ms
+--------------- Rebuild Started: 03/12/2017 06:21:37 Project: PAFE-Shield, Configuration: ARM GCC 5.4-2016-q2-update Debug ---------------
+Deleting file ".\PAFE-Shield.cycdx"
+Deleting file ".\PAFE-Shield.rpt"
+cydsfit.exe -.appdatapath "C:\Users\Alan\AppData\Local\Cypress Semiconductor\PSoC Creator\4.1" -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p "\\vmware-host\Shared Folders\Documents\emb2017\psoc\emb2017\PAFE-Shield.cydsn\PAFE-Shield.cyprj" -d CY8C4A45AZI-483 -s "\\vmware-host\Shared Folders\Documents\emb2017\psoc\emb2017\PAFE-Shield.cydsn\Generated_Source\PSoC4" -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
+Elaborating Design...
 ADD: pft.M0086: error: Error in component: Bootloadable. The referenced Bootloader is invalid. Verify the Bootloader dependency is correct in the Bootloadable Component, then build project. Invalid bootloader hex file. Unable to read the hex file (\\vmware-host\Shared Folders\Documents\emb2017\psoc\emb2017\WW101-Bootloader.cydsn\CortexM0p\ARM_GCC_541\Release\WW101-Bootloader.hex). The path does not exist.
  * \\vmware-host\Shared Folders\Documents\emb2017\psoc\emb2017\PAFE-Shield.cydsn\TopDesign\TopDesign.cysch (Instance:Bootloadable)
-
 ADD: pft.M0086: error: Error in component: Bootloadable. The referenced Bootloader is invalid. Verify the Bootloader dependency is correct in the Bootloadable Component, then build project. Invalid bootloader elf file. Unable to read the elf file (\\vmware-host\Shared Folders\Documents\emb2017\psoc\emb2017\WW101-Bootloader.cydsn\CortexM0p\ARM_GCC_541\Release\WW101-Bootloader.elf). The path does not exist.
  * \\vmware-host\Shared Folders\Documents\emb2017\psoc\emb2017\PAFE-Shield.cydsn\TopDesign\TopDesign.cysch (Instance:Bootloadable)
-
+Error: fit.M0050: The fitter aborted due to errors, please address all errors and rebuild. (App=cydsfit)
+--------------- Rebuild Failed: 03/12/2017 06:21:43 ---------------

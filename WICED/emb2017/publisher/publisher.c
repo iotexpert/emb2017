@@ -68,9 +68,6 @@
 #define MQTT_DELAY_IN_MILLISECONDS          (1000)
 #define MQTT_MAX_RESOURCE_SIZE              (0x7fffffff)
 #define MQTT_PUBLISH_RETRY_COUNT            (3)
-// EMB2017
-//#define MSG_ON                              "10203040"
-//#define MSG_OFF                             "40302010"
 
 /******************************************************
  *               Variable Definitions
@@ -321,23 +318,11 @@ void application_start( void )
             		sprintf(msg,"%2X",position);
             		pub_in_progress = 1;
             	}
-
             }
 
             if ( pub_in_progress == 1 )
             {
                 WPRINT_APP_INFO(("[MQTT] Publishing..."));
-                // EMB2017
-                /*
-                if ( count % 2 )
-                {
-                    msg = MSG_ON;
-                }
-                else
-                {
-                    msg = MSG_OFF;
-                }
-                */
                 do
                 {
                     ret = mqtt_app_publish( mqtt_object, WICED_MQTT_QOS_DELIVER_AT_LEAST_ONCE, (uint8_t*) WICED_TOPIC, (uint8_t*) msg, strlen( msg ) );
